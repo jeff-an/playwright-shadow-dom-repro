@@ -14,6 +14,7 @@ const browserCacheDir = join(
 const sharedBrowserOptions = {
   headless: true,
   handleSIGTERM: false,
+  channel: "chromium",
 };
 const sharedContextOptions = {
   deviceScaleFactor: 1,
