@@ -67,12 +67,22 @@ async function main() {
     args: chromeArgs,
     baseURL: "https://google.com",
   });
+
   const page = context.pages()[0]!;
   await page.goto("https://google.com", {
     waitUntil: "domcontentloaded",
   });
   await page.waitForEvent("load");
   await page.waitForTimeout(10_000);
+
+  const cdpSession = await context.newCDPSession(page);
+  // doing this or not makes no difference
+  await cdpSession.send("Emulation.setDeviceMetricsOverride", {
+    mobile: false,
+    width: 1920,
+    height: 1080,
+    deviceScaleFactor: 1,
+  });
 
   const buff1 = await page.screenshot({
     type: "jpeg",
