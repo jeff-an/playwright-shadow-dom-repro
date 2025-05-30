@@ -14,4 +14,4 @@ jobs:
       - run: npx envinfo --preset playwright
       - run: npx tsx index.ts
         env:
-          DEBUG: pw:api
+          DEBUG: pw:api,pw:browser
